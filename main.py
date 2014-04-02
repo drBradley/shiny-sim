@@ -1,70 +1,29 @@
 import sys
-from time import sleep
 
+from PyQt4 import QtGui, QtCore
+from PyQt4.QtCore import QTimer
+
+from integrator import Integrator
 from body import Body
 from string import String
 from cartesian import Vector
 
 delay = 10
 
-class Main(object):
+def run():
 
-    def __init__(self):
-
-        self.bodies = []
-        self.interactions = []
-
-    def add_bodies(self, bodies):
-
-        self.bodies = bodies
-
-    def add_body(self, body):
-
-        if isinstance(body, Body):
-
-            self.bodies.append(body)
-
-        else:
-
-            print "Not a physical body"
-
-    def add_interactions(self, interactions):
-
-        self.interactions = interactions
-
-    def integrate(self, dt):
-
-        for interaction in self.interactions:
-
-            interaction.compute()
-
-        for body in self.bodies:
-
-            body.calculate(dt)
-
-    def show_bodies(self):
-
-        for body in self.bodies:
-
-            print str(self.bodies.index(body)) + " " + body.show()
-
-    def show_interactions(self):
-
-        for interaction in self.interactions:
-
-            print interaction.show()
-
+    integrator.integrate(dt)
+    integrator.repaint()
+    timer.start(delay)
 
 if __name__ == '__main__':
 
     dt = 0.01
     k = 1
 
-    m = Main()
-
-    bodies = [Body(Vector(1, 1), 100),
-              Body(Vector(2, 1), 1),
-              Body(Vector(3, 1), 100)]
+    bodies = [Body(Vector(100, 100), 1000),
+              Body(Vector(200, 100), 1),
+              Body(Vector(300, 100), 1000)]
 
     interactions = [String(bodies[0],
                            bodies[1],
@@ -74,10 +33,16 @@ if __name__ == '__main__':
                            k),
                 ]
 
-    m.add_bodies(bodies)
-    m.add_interactions(interactions)
+    app = QtGui.QApplication(sys.argv)
+    integrator = Integrator()
 
-    # m.show_bodies()
-    # m.show_interactions()
+    integrator.add_bodies(bodies)
+    integrator.add_interactions(interactions)
 
-    m.integrate(dt)
+    integrator.shift_body(1, Vector(1, 0, 0))
+
+    timer = QTimer()
+    timer.timeout.connect(run)
+    timer.start(50)
+
+    sys.exit(app.exec_())
