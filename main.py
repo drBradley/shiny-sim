@@ -10,6 +10,33 @@ from cartesian import Vector
 
 delay = 10
 
+def init_system(file_name, bodies, interactions):
+
+    with open(file_name) as data:
+
+        for line in data:
+
+            tmp = line.split(' ')
+
+            if tmp[0] == 'Body':
+
+                x = float(tmp[1])
+                y = float(tmp[2])
+                m = float(tmp[3])
+
+                bodies.append(Body(Vector(x, y), m))
+
+            elif tmp[0] == 'String':
+
+                right = int(tmp[1])
+                left = int(tmp[2])
+                k = float(tmp[3])
+
+                interactions.append(String(bodies[right],
+                                           bodies[left],
+                                           k))
+
+
 def run():
 
     integrator.integrate(dt)
