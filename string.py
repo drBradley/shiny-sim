@@ -28,7 +28,7 @@ class String(object):
 
     def apply_force(self):
 
-        self.right.apply(self.force)
+        self.right.apply(-self.force)
         self.left.apply(self.force)
 
     def show(self):
