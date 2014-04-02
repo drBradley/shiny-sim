@@ -24,23 +24,48 @@ class Vector(object):
 
             return Vector(vec.x * a, vec.y * a, vec.z * a)
 
+    def __div__(vec, a):
+
+        if isinstance(a, (int, float)):
+
+            return Vector(vec.x / a, vec.y / a, vec.z / a)
+
+    def __rdiv__(vec, a):
+
+        if isinstance(a, (int, float)):
+
+            return Vector(vec.x / a, vec.y / a, vec.z / a)
 
     def __add__(vec_a, vec_b):
 
-        if isinstance(a, Vector):
+        if isinstance(vec_a, Vector):
 
             return Vector(vec_a.x + vec_b.x,
                           vec_a.y + vec_b.y,
                           vec_a.z + vec_b.z)
 
+        else:
+
+            print "Dunno what to do"
+
     def __sub__(vec_a, vec_b):
 
-        if isinstance(a, Vector):
+        if isinstance(vec_a, Vector):
 
             return Vector(vec_a.x - vec_b.x,
                           vec_a.y - vec_b.y,
                           vec_a.z - vec_b.z)
 
+        else:
+
+            print "Dunno what to do"
+
+    def __neg__(vec):
+
+        return -1 * vec
+
     def show(self):
 
-        print "[", self.x, ", ", self.y, ", ", self.z, "]"
+        s =  "[" +  str(self.x) +  ", " + str(self.y) + ", " + str(self.z) + "]"
+
+        return s
