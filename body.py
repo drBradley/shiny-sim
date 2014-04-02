@@ -46,6 +46,13 @@ class Body(object):
         self.old_position = self.position
         self.position = self.position + shift
 
+    def draw(self, painter):
+
+        painter.drawEllipse(self.position.x - self.size / 2,
+                            self.position.y - self.size / 2,
+                            self.size,
+                            self.size)
+
     def show(self):
 
         return "Position " + self.position.show() + " mass " + str(self.mass)
