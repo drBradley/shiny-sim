@@ -2,17 +2,19 @@ from cartesian import Vector
 
 class String(object):
 
+    name = "String"
+
     def __init__(self, right, left, k):
 
         self.right = right
         self.left = left
         self.k = k
 
-        self.length = Vector.get_direction(self.right, self.left)
+        self.length = Vector.get_direction(self.right.position, self.left.position)
 
     def update_extension(self):
 
-        self.extension = Vector.get_direction(self.right, self.left) - self.length
+        self.extension = Vector.get_direction(self.right.position, self.left.position) - self.length
 
     def update_force(self):
 
@@ -22,3 +24,7 @@ class String(object):
 
         self.right.apply(self.force)
         self.left.apply(self.force)
+
+    def show(self):
+
+        return String.name + " force [" + self.right.show() + " -> " + self.left.show() + "] " + str(self.k)
