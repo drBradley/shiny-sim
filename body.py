@@ -11,9 +11,11 @@ class Body(object):
     def __init__(self, position, m):
 
         self.acting_forces = []
+
         self.position = position
+        self.old_position = position
         self.mass = m
-        self.acceleration = 0
+        self.acceleration = Vector(0, 0, 0)
 
         self.size = 20
 
@@ -28,7 +30,7 @@ class Body(object):
 
     def compute_acceleration(self):
 
-        acc = 0
+        acc = Vector(0, 0, 0)
         for force in self.acting_forces:
 
             acc = acc + force / self.mass
@@ -38,3 +40,7 @@ class Body(object):
     def apply(self, force):
 
         self.acting_forces.append(force)
+
+    def show(self):
+
+        return "Position " + self.position.show() + " mass " + str(self.mass)

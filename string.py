@@ -12,6 +12,12 @@ class String(object):
 
         self.length = Vector.get_direction(self.right.position, self.left.position)
 
+    def compute(self):
+
+        self.update_extension()
+        self.update_force()
+        self.apply_force()
+
     def update_extension(self):
 
         self.extension = Vector.get_direction(self.right.position, self.left.position) - self.length
