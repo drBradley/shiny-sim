@@ -36,6 +36,22 @@ def init_system(file_name, bodies, interactions):
                                            bodies[left],
                                            k))
 
+def configure_system(file_name, integrator):
+
+    with open(file_name) as data:
+
+        for line in data:
+
+            tmp = line.split(' ')
+
+            if tmp[0] == 'move':
+
+                index = int(tmp[1])
+                x = float(tmp[2])
+                y = float(tmp[3])
+                z = float(tmp[4])
+                integrator.shift_body(index, Vector(x, y, z))
+
 
 def run():
 
