@@ -41,6 +41,11 @@ class Body(object):
 
         self.acting_forces.append(force)
 
+    def move_by(self, shift):
+
+        self.old_position = self.position
+        self.position = self.position + shift
+
     def show(self):
 
         return "Position " + self.position.show() + " mass " + str(self.mass)
