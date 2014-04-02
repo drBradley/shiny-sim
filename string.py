@@ -1,4 +1,4 @@
-from cartesian import Point, Vector
+from cartesian import Vector
 
 class String(object):
 

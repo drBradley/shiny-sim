@@ -3,7 +3,7 @@ import sys
 
 from PyQt4 import QtGui, QtCore
 
-from cartesian import Point, Vector
+from cartesian import Vector
 
 
 class Body(object):

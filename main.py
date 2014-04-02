@@ -3,7 +3,7 @@ from time import sleep
 
 from body import Body
 from string import String
-from cartesian import Point, Vector
+from cartesian import Vector
 
 delay = 10
 
