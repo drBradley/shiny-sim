@@ -80,6 +80,35 @@ def honeycomb_relations(relations, nx, ny, k):
 
                 relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
 
+def get_weights(weights, nx, ny):
+
+    for j in range(ny):
+
+        weights.append([])
+        for i in range(nx):
+
+            if i == 0 or i == nx - 1 or j == 0 or j == ny - 1:
+
+                weights[j].append(frame_ratio / float(body_mass))
+
+            else:
+
+                weights[j].append(body_mass)
+
+    if structure == 1:
+
+        for j in range(ny):
+
+            for i in range(nx):
+
+                if (j % 2 == 1 and i == 0) and not (j == ny - 1):
+
+                    weights[j][i] = body_mass
+
+                if (j % 2 == 0 and i == nx - 1) and not (j == 0 or j == ny - 1):
+
+                    weights[j][i] = body_mass
+
 
 if __name__ == '__main__':
 
@@ -125,6 +154,12 @@ if __name__ == '__main__':
         translate(Vector(init_offset, init_offset), bodies)
 
         honeycomb_relations(relations, nx, ny, k)
+
+    if solid_frame:
+
+        frame_ratio = 1000
+
+    get_weights(weights, nx, ny)
 
     with open(file_name, 'w') as output:
 
