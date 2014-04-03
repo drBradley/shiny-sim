@@ -68,7 +68,7 @@ class Vector(object):
 
         return -1 * vec
 
-    def show(self):
+    def __repr__(self):
 
         s =  "[" +  str(self.x) +  ", " + str(self.y) + ", " + str(self.z) + "]"
 
