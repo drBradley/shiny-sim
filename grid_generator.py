@@ -22,6 +22,27 @@ def scale(vec, matrix):
                                        matrix[row][cell].y * vec.y,
                                        matrix[row][cell].z * vec.z)
 
+def to_honeycomb(f, matrix):
+
+    for row in range(len(matrix)):
+
+        for cell in range(len(matrix[row])):
+
+            matrix[row][cell] = matrix[row][cell].mapX(f)
+
+    scale(Vector(x_offset, x_offset), matrix)
+    shift_odd_row_X(lambda x: x + (twice_x_offset + x_offset) * math.cos(math.pi / 3), matrix)
+
+def shift_odd_row_X(f, matrix):
+
+    for row in range(len(matrix)):
+
+        for cell in range(len(matrix[row])):
+
+            if row % 2 == 1:
+
+                matrix[row][cell] = matrix[row][cell].mapX(f)
+
 def grid_relation(relations, x, y, k):
 
     for j in range(y):
