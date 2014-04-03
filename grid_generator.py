@@ -77,3 +77,17 @@ if __name__ == '__main__':
         translate(Vector(init_offset, init_offset), bodies)
 
         grid_relation(relations, nx, ny, k)
+
+    with open(file_name, 'w') as output:
+
+        for j in range(ny):
+
+            for i in range(nx):
+
+                output.write('Body %d %d %d\n' % (bodies[j][i].x,
+                                                  bodies[j][i].y,
+                                                  weights[j][i]))
+
+        for string in relations:
+
+            output.write(string)
