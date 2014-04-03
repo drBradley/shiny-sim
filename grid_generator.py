@@ -4,6 +4,15 @@ import math
 from vector import Vector
 
 
+def translate(vec, matrix):
+
+    for row in range(len(matrix)):
+
+        for cell in range(len(matrix[row])):
+
+            matrix[row][cell] = matrix[row][cell] + vec
+
+
 if __name__ == '__main__':
 
     nx = int(sys.argv[1])
