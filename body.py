@@ -1,12 +1,30 @@
 import math
 import sys
+from abc import ABCMeta, abstractmethod
 
 from PyQt4 import QtGui, QtCore
 
 from vector import Vector
 
 
-class Body(object):
+class PhysicalBody:
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def apply(self):
+
+        pass
+
+    def calculate(self):
+
+        pass
+
+    def move_by(self):
+
+        pass
+
+
+class Body(PhysicalBody):
 
     def __init__(self, position, m):
 
