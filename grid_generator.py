@@ -118,6 +118,14 @@ if __name__ == '__main__':
 
         grid_relation(relations, nx, ny, k)
 
+    if structure == 1:
+        # # HONEYCOMB GRID
+        twice_x_offset = x_offset * 2
+        to_honeycomb(lambda x: x + x / 2, bodies)
+        translate(Vector(init_offset, init_offset), bodies)
+
+        honeycomb_relations(relations, nx, ny, k)
+
     with open(file_name, 'w') as output:
 
         for j in range(ny):
