@@ -12,6 +12,16 @@ def translate(vec, matrix):
 
             matrix[row][cell] = matrix[row][cell] + vec
 
+def scale(vec, matrix):
+
+    for row in range(len(matrix)):
+
+        for cell in range(len(matrix[row])):
+
+            matrix[row][cell] = Vector(matrix[row][cell].x * vec.x,
+                                       matrix[row][cell].y * vec.y,
+                                       matrix[row][cell].z * vec.z)
+
 
 if __name__ == '__main__':
 
