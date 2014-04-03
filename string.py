@@ -1,6 +1,17 @@
+from abc import ABCMeta, abstractmethod
+
 from vector import Vector
 
-class String(object):
+
+class Interaction:
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def compute(self):
+
+        pass
+
+class String(Interaction):
 
     name = "String"
 
