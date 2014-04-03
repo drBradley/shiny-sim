@@ -22,6 +22,24 @@ def scale(vec, matrix):
                                        matrix[row][cell].y * vec.y,
                                        matrix[row][cell].z * vec.z)
 
+def grid_relation(relations, x, y, k):
+
+    for j in range(y):
+
+        for i in range(x):
+
+            if 0 < i < x and 0 < j < y:
+
+                relations.append('String %d %d %d\n' % (x * j + i, x * j + i - 1, k))
+                relations.append('String %d %d %d\n' % (x * j + i, x * (j - 1) + i, k))
+
+            if i == 0 and 0 < j:
+
+                relations.append('String %d %d %d\n' % (x * j, x * (j - 1), k))
+
+            if j == 0 and 0 < i:
+
+                relations.append('String %d %d %d\n' % (i, i - 1, k))
 
 if __name__ == '__main__':
 
