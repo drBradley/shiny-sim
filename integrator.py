@@ -69,6 +69,10 @@ class Integrator(QtGui.QWidget):
         painter = QtGui.QPainter()
         painter.begin(self)
 
+        for interaction in self.interactions:
+
+            interaction.draw(painter)
+
         for body in self.bodies:
 
             body.draw(painter)
