@@ -5,7 +5,7 @@ from PyQt4.QtCore import QTimer
 
 from body import Body
 from string import String
-from cartesian import Vector
+from vector import Vector
 
 delay = 10
 
