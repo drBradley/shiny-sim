@@ -62,6 +62,25 @@ def grid_relation(relations, x, y, k):
 
                 relations.append('String %d %d %d\n' % (i, i - 1, k))
 
+def honeycomb_relations(relations, nx, ny, k):
+
+    for j in range(ny):
+
+        for i in range(nx):
+
+            if i < nx - 1 and i % 2 == 0:
+
+                relations.append('String %d %d %d\n' % (j * nx + i, j * nx + i + 1, k))
+
+            if j < ny - 1 and 0 < i and j % 2 == 0:
+
+                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i - 1, k))
+
+            if j < ny - 1 and i < nx - 1 and j % 2 == 1:
+
+                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
+
+
 if __name__ == '__main__':
 
     nx = int(sys.argv[1])
