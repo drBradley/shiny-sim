@@ -12,6 +12,10 @@ class Vector(object):
                       end.y - start.y,
                       end.z - start.y)
 
+    def mapX(self, a):
+
+        return Vector(a(self.x), self.y, self.z)
+
     def __mul__(vec, a):
 
         if isinstance(a, (int, float)):
