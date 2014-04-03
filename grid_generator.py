@@ -70,3 +70,10 @@ if __name__ == '__main__':
         for i in range(nx):
 
             bodies[j].append(Vector(i, j, 0))
+
+    if structure == 0:
+        # QUADRATIC GRID
+        scale(Vector(x_offset, y_offset), bodies)
+        translate(Vector(init_offset, init_offset), bodies)
+
+        grid_relation(relations, nx, ny, k)
