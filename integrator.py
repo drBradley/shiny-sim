@@ -73,6 +73,7 @@ class Integrator(QtGui.QWidget):
 
             interaction.draw(painter)
 
+        painter.setBrush(QtGui.QColor(240, 50, 40))
         for body in self.bodies:
 
             body.draw(painter)
