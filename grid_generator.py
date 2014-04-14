@@ -117,15 +117,14 @@ if __name__ == '__main__':
 
     file_name = sys.argv[3]
     structure = int(sys.argv[4])
-    print structure
 
     solid_frame = True
 
     init_offset = 50
-    x_offset = int(500.0 / nx)
-    y_offset = int(500.0 / ny)
+    x_offset = int(1000.0 / nx)
+    y_offset = int(1000.0 / ny)
 
-    k = 1
+    k = 10
     body_mass = 1
     frame_ratio = 1
 
@@ -146,6 +145,7 @@ if __name__ == '__main__':
         translate(Vector(init_offset, init_offset), bodies)
 
         grid_relation(relations, nx, ny, k)
+        print 'Plain grid READY !'
 
     if structure == 1:
         # # HONEYCOMB GRID
@@ -154,6 +154,7 @@ if __name__ == '__main__':
         translate(Vector(init_offset, init_offset), bodies)
 
         honeycomb_relations(relations, nx, ny, k)
+        print 'Honeycomb structure READY !'
 
     if solid_frame:
 
