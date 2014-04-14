@@ -1,16 +1,20 @@
 import sys
+import time
+import math
 
 from body import Body
 from string import String
 from vector import Vector
 
 
-class Integrator():
+class Integrator:
 
     def __init__(self):
 
+        self.first_run = True
         self.bodies = []
         self.interactions = []
+        self.max_energy = 0
 
     def add_bodies(self, bodies):
 
