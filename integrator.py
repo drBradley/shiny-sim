@@ -54,6 +54,15 @@ class Integrator:
 
             print str(self.bodies.index(body)) + " " + body.show()
 
+    def get_total_energy(self):
+
+        energy = 0;
+        for body in self.bodies:
+
+            energy += body.total_energy
+
+        return energy
+
     def show_interactions(self):
 
         for interaction in self.interactions:
