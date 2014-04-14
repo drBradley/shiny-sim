@@ -28,7 +28,7 @@ class Body(PhysicalBody):
 
     def __init__(self, position, m):
 
-        self.acting_forces = []
+        self.force = Vector(0, 0, 0)
         self.potential_energy = 0
 
         self.position = position
@@ -42,7 +42,6 @@ class Body(PhysicalBody):
 
     def calculate(self, dt):
         # calculate new position using Verlet algorithm
-        self.force = self.compute_force()
 
         self.new_position = 2 * self.position - self.old_position - self.force * dt**2
 
@@ -52,20 +51,9 @@ class Body(PhysicalBody):
 
         self.old_position = self.position;
         self.position = self.new_position;
-        self.acting_forces = []
 
-    def compute_force(self):
-
-        acc = Vector(0, 0, 0)
-        for force in self.acting_forces:
-
-            acc = acc + force / self.mass
-
-        return acc
-
-    def apply(self, force):
-
-        self.acting_forces.append(force)
+        self.force = Vector(0, 0, 0)
+        self.potential_energy = 0
 
     def move_by(self, shift):
 
