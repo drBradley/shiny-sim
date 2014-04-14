@@ -46,10 +46,10 @@ class GridViewer(QtGui.QWidget):
             painter.setPen(QtGui.QColor(0, 0, 0))
 
             fraction = float(self.steps - index * self.divisor) / self.steps
-            tresh = self.integrator.max_energy * fraction
+            tresh = math.exp(self.integrator.max_energy * fraction) * 100 / math.exp(self.integrator.max_energy)
 
             painter.drawText(35, (index + 1) * self.size - self.size * 0.25, 
-                             str(tresh))
+                             "%.4f %%" % tresh)
 
         painter.end()
         

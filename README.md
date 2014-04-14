@@ -13,6 +13,12 @@ In shiny-sim I stick to two major objects
 * Interactions - describes the relation between two physical bodies,
   and exert on them force
 
+The simulation of honeycomb structure in which one segment was
+initially moved in positive z direction.
+
+![alt text](https://raw.githubusercontent.com/drBradley/shiny-sim/master/screen-14-04-2014
+ "Honeycomb structure with 'fixed' frame")
+
 # Dependiencies
 
 * Python 2.7
