@@ -30,7 +30,6 @@ class Body(PhysicalBody):
         self.old_position = position
         self.mass = m
         self.acceleration = Vector(0, 0, 0)
-        self.size = 20
         self.potential_energy = 0
         self.kinetic_energy = 0
         self.total_energy = 0
