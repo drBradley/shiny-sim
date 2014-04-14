@@ -25,16 +25,12 @@ class String(Interaction):
 
     def compute(self):
 
-        self.update_extension()
-        self.update_force()
         self.apply_force()
+        self.update()
 
-    def update_extension(self):
+    def update(self):
 
         self.extension = Vector.get_direction(self.right.position, self.left.position) - self.length
-
-    def update_force(self):
-
         self.force = self.k * self.extension
 
     def apply_force(self):
