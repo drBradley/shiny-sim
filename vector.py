@@ -10,7 +10,7 @@ class Vector(object):
 
         return Vector(end.x - start.x,
                       end.y - start.y,
-                      end.z - start.y)
+                      end.z - start.z)
 
     def mapX(self, a):
 
