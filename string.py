@@ -32,6 +32,7 @@ class String(Interaction):
 
         self.extension = Vector.get_direction(self.right.position, self.left.position) - self.length
         self.force = self.k * self.extension
+        self.potential_energy = self.k * abs(self.extension) * abs(self.extension) / 2
 
     def apply(self):
 
