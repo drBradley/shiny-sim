@@ -3,6 +3,7 @@ import sys
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import QTimer
 
+from grid_viewer import GridViewer
 from integrator import Integrator
 from body import Body
 from string import String
@@ -56,8 +57,8 @@ def configure_system(file_name, integrator):
 
 def run():
 
-    integrator.integrate(dt)
-    integrator.repaint()
+    viewer.integrator.integrate(dt)
+    viewer.repaint()
     timer.start(delay)
 
 
@@ -66,13 +67,13 @@ if __name__ == '__main__':
     if len(sys.argv) == 3:
 
         dt = 0.01
-        k = 1
 
         bodies = []
         interactions = []
 
         app = QtGui.QApplication(sys.argv)
         integrator = Integrator()
+        viewer = GridViewer(integrator, dt)
 
         init_system(sys.argv[1], bodies, interactions)
 
@@ -81,9 +82,13 @@ if __name__ == '__main__':
 
         configure_system(sys.argv[2], integrator)
 
+        integrator.integrate(dt)
+        integrator.max_energy = integrator.normalize(integrator.get_max_energy())
+        viewer.prepare_color_key()
+
         timer = QTimer()
         timer.timeout.connect(run)
-        timer.start(50)
+        timer.start(10)
 
         sys.exit(app.exec_())
 
