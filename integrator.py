@@ -79,11 +79,3 @@ class Integrator(QtGui.QWidget):
             body.draw(painter)
 
         painter.end()
-
-    def keyPressEvent(self, event):
-
-        key = event.key()
-
-        if key == QtCore.Qt.Key_Escape:
-
-            self.close()
