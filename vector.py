@@ -1,3 +1,5 @@
+import math
+
 class Vector(object):
 
     def __init__(self, x=0, y=0, z=0):
@@ -15,6 +17,10 @@ class Vector(object):
     def mapX(self, a):
 
         return Vector(a(self.x), self.y, self.z)
+
+    def __abs__(self):
+
+        return math.sqrt(self.x * self.x + self.y * self.y + self.z * self.z)
 
     def __mul__(vec, a):
 
