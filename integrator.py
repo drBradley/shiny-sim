@@ -63,19 +63,3 @@ class Integrator(QtGui.QWidget):
         for interaction in self.interactions:
 
             print interaction.show()
-
-    def paintEvent(self, event):
-
-        painter = QtGui.QPainter()
-        painter.begin(self)
-
-        for interaction in self.interactions:
-
-            interaction.draw(painter)
-
-        painter.setBrush(QtGui.QColor(240, 50, 40))
-        for body in self.bodies:
-
-            body.draw(painter)
-
-        painter.end()
