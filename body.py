@@ -10,11 +10,6 @@ from vector import Vector
 class PhysicalBody:
     __metaclass__ = ABCMeta
 
-    @abstractmethod
-    def apply(self):
-
-        pass
-
     def calculate(self):
 
         pass
