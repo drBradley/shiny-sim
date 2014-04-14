@@ -58,6 +58,14 @@ class Vector(object):
 
             print "Dunno what to do"
 
+    def __radd__(vec_a, vec_b):
+
+        if isinstance(vec_a, Vector) and isinstance(vec_b, Vector):
+
+            return Vector(vec_a.x + vec_b.x,
+                          vec_a.y + vec_b.y,
+                          vec_a.z + vec_b.z)
+
     def __sub__(vec_a, vec_b):
 
         if isinstance(vec_a, Vector):
