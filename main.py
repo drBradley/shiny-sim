@@ -21,11 +21,12 @@ def init_system(file_name, bodies, interactions):
 
             if tmp[0] == 'Body':
 
-                x = float(tmp[1])
-                y = float(tmp[2])
-                m = float(tmp[3])
+                x = float(eval(tmp[1]))
+                y = float(eval(tmp[2]))
+                z = float(eval(tmp[3]))
+                m = float(eval(tmp[4]))
 
-                bodies.append(Body(Vector(x, y), m))
+                bodies.append(Body(Vector(x, y, z), m))
 
             elif tmp[0] == 'String':
 
