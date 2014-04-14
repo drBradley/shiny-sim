@@ -63,6 +63,18 @@ class Integrator:
 
         return energy
 
+    def get_max_energy(self):
+
+        energy = -sys.maxint - 1
+
+        for body in self.bodies:
+
+            if body.total_energy > energy:
+
+                energy = body.total_energy
+
+        return energy
+
     def show_interactions(self):
 
         for interaction in self.interactions:
