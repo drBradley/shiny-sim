@@ -29,18 +29,26 @@ class Body(PhysicalBody):
     def __init__(self, position, m):
 
         self.acting_forces = []
+        self.potential_energy = 0
 
         self.position = position
         self.old_position = position
         self.mass = m
         self.acceleration = Vector(0, 0, 0)
-
         self.size = 20
+        self.potential_energy = 0
+        self.kinetic_energy = 0
+        self.total_energy = 0
 
     def calculate(self, dt):
-        # calculate new position using Verlet algorith
+        # calculate new position using Verlet algorithm
         self.force = self.compute_force()
+
         self.new_position = 2 * self.position - self.old_position - self.force * dt**2
+
+        velocity = (self.new_position - self.old_position) / (2 * dt)
+        self.kinetic_energy = self.mass * abs(velocity) * abs(velocity) / 2
+        self.total_energy = self.potential_energy + self.kinetic_energy
 
         self.old_position = self.position;
         self.position = self.new_position;
