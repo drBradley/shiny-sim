@@ -168,8 +168,9 @@ if __name__ == '__main__':
 
             for i in range(nx):
 
-                output.write('Body %d %d %d\n' % (bodies[j][i].x,
+                output.write('Body %d %d %d %d\n' % (bodies[j][i].x,
                                                   bodies[j][i].y,
+                                                  bodies[j][i].z,
                                                   weights[j][i]))
 
         for string in relations:
