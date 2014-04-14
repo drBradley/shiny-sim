@@ -46,12 +46,13 @@ def configure_system(file_name, integrator):
 
             if tmp[0] == 'move':
 
-                index = int(tmp[1])
-                x = float(tmp[2])
-                y = float(tmp[3])
-                z = float(tmp[4])
-                integrator.shift_body(index, Vector(x, y, z))
-
+                index = int(eval(tmp[1]))
+                x = float(eval(tmp[2]))
+                y = float(eval(tmp[3]))
+                z = float(eval(tmp[4]))
+                print 'Moving ',index, ' by [',x, y, z, ']'
+                displacement = Vector(x, y, z)
+                integrator.shift_body(index, displacement)
 
 def run():
 
