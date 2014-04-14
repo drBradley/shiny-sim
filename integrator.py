@@ -1,21 +1,13 @@
 import sys
 
-from PyQt4 import QtGui, QtCore
-from PyQt4.QtCore import QTimer
-
 from body import Body
 from string import String
 from vector import Vector
 
-delay = 10
 
-class Integrator(QtGui.QWidget):
+class Integrator():
 
     def __init__(self):
-
-        super(Integrator, self).__init__()
-
-        self.show()
 
         self.bodies = []
         self.interactions = []
