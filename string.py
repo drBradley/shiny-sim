@@ -25,18 +25,21 @@ class String(Interaction):
 
     def compute(self):
 
-        self.apply_force()
         self.update()
+        self.apply()
 
     def update(self):
 
         self.extension = Vector.get_direction(self.right.position, self.left.position) - self.length
         self.force = self.k * self.extension
 
-    def apply_force(self):
+    def apply(self):
 
-        self.right.apply(-self.force)
-        self.left.apply(self.force)
+        self.right.force += -self.force
+        self.left.force += self.force
+
+        self.right.potential_energy += self.potential_energy
+        self.left.potential_energy += self.potential_energy
 
     def show(self):
 
