@@ -55,3 +55,18 @@ class Integrator():
         for interaction in self.interactions:
 
             print interaction.show()
+
+    def normalize(self, value):
+
+        return math.log(1 + value)
+
+    def rate_function(self, body, steps):
+
+        rate = int(steps - self.normalize(body.total_energy) * steps / self.max_energy) - 1
+        if not (rate < 0):
+
+            return rate
+
+        else:
+
+            return 0
