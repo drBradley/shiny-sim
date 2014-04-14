@@ -68,7 +68,7 @@ class Vector(object):
 
     def __sub__(vec_a, vec_b):
 
-        if isinstance(vec_a, Vector):
+        if isinstance(vec_a, Vector) and isinstance(vec_b, Vector):
 
             return Vector(vec_a.x - vec_b.x,
                           vec_a.y - vec_b.y,
