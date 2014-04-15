@@ -13,6 +13,7 @@ class GridViewer(QtGui.QWidget):
     def __init__(self, integrator, dt):
 
         super(GridViewer, self).__init__()
+        self.setMouseTracking(True)
 
         self.view_x = 0
         self.view_y = 0
