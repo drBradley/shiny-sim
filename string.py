@@ -45,8 +45,3 @@ class String(Interaction):
     def show(self):
 
         return String.name + " force [" + self.right.show() + " -> " + self.left.show() + "] " + str(self.k)
-
-    def draw(self, painter):
-
-        painter.drawLine(self.left.position.x, self.left.position.y,
-                         self.right.position.x, self.right.position.y)
