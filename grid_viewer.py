@@ -14,6 +14,8 @@ class GridViewer(QtGui.QWidget):
 
         super(GridViewer, self).__init__()
 
+        self.view_x = 0
+        self.view_y = 0
         self.show()
         self.dt = dt
         self.updating = False
@@ -78,8 +80,8 @@ class GridViewer(QtGui.QWidget):
 
                     rate = 0
 
-                painter.drawPixmap(pos.x - self.size / 2,
-                                   pos.y - self.size / 2,
+                painter.drawPixmap(self.view_x + pos.x - self.size / 2,
+                                   self.view_y + pos.y - self.size / 2,
                                    self.pixmaps[rate])
 
             painter.drawPixmap(1700,
