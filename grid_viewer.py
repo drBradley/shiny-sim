@@ -62,7 +62,10 @@ class GridViewer(QtGui.QWidget):
 
             for interaction in self.integrator.interactions:
 
-                interaction.draw(painter)
+                painter.drawLine(self.view_x + interaction.left.position.x,
+                                 self.view_y + interaction.left.position.y,
+                                 self.view_x + interaction.right.position.x,
+                                 self.view_y + interaction.right.position.y)
 
             for body in self.integrator.bodies:
 
