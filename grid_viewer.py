@@ -20,6 +20,7 @@ class GridViewer(QtGui.QWidget):
         self.show()
         self.dt = dt
         self.updating = False
+        self.left_clicked = False
         self.size = 20
         self.steps = 255
         self.divisor = 8
@@ -55,6 +56,36 @@ class GridViewer(QtGui.QWidget):
                              "%.4f %%" % tresh)
 
         painter.end()
+
+    def mousePressEvent(self, event):
+
+        if event.button() == QtCore.Qt.LeftButton:
+
+            pos = event.pos()
+            self.drag_start_x = pos.x()
+            self.drag_start_y = pos.y()
+
+            self.left_clicked = True
+
+    def mouseReleaseEvent(self, event):
+
+        if event.button() == QtCore.Qt.LeftButton:
+
+            self.left_clicked = False
+
+    def mouseMoveEvent(self, event):
+
+        if self.left_clicked:
+
+            pos = event.pos()
+            self.drag_end_x = pos.x()
+            self.drag_end_y = pos.y()
+
+            self.view_x +=  self.drag_end_x - self.drag_start_x
+            self.view_y +=  self.drag_end_y - self.drag_start_y
+
+            self.drag_start_x = pos.x()
+            self.drag_start_y = pos.y()
         
     def paintEvent(self, event):
 
