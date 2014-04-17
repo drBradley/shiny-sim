@@ -3,7 +3,7 @@ import time
 import math
 
 from body import Body
-from string import String
+from interactions import String
 from vector import Vector
 
 

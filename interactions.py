@@ -21,7 +21,7 @@ class String(Interaction):
         self.left = left
         self.k = k
 
-        self.length = Vector.get_direction(self.right.position, self.left.position)
+        self.length = abs(Vector.get_direction(self.right.position, self.left.position))
 
     def compute(self):
 
@@ -30,7 +30,11 @@ class String(Interaction):
 
     def update(self):
 
-        self.extension = Vector.get_direction(self.right.position, self.left.position) - self.length
+        self.extension = Vector.get_direction(self.right.position, self.left.position)
+        extension_length = abs(self.extension)
+        self.extension = self.extension / abs(self.extension)
+        self.extension = self.extension * (extension_length - self.length)
+
         self.force = self.k * self.extension
         self.potential_energy = self.k * abs(self.extension) * abs(self.extension) / 2
 

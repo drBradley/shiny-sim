@@ -6,7 +6,7 @@ from PyQt4.QtCore import QTimer
 from grid_viewer import GridViewer
 from integrator import Integrator
 from body import Body
-from string import String
+from interactions import String
 from vector import Vector
 
 delay = 10
