@@ -116,8 +116,8 @@ class GridViewer(QtGui.QWidget):
                                    self.view_y + pos.y - self.size / 2,
                                    self.pixmaps[rate])
 
-            painter.drawPixmap(1700,
-                               100,
+            painter.drawPixmap(self.width() - 150,
+                               50,
                                self.color_key)
 
             painter.end()
