@@ -156,3 +156,4 @@ class GridViewer(QtGui.QWidget):
             self.integrator.max_energy = self.integrator.normalize(self.integrator.get_max_energy())
             self.prepare_maps()
             self.prepare_color_key()
+            print 'Max energy', self.integrator.get_max_energy(), self.integrator.get_total_energy()
