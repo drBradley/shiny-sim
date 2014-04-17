@@ -80,6 +80,73 @@ def honeycomb_relations(relations, nx, ny, k):
 
                 relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
 
+def honeycomb_extended_relations(relations, nx, ny, k):
+
+    for j in range(ny):
+
+        for i in range(nx):
+
+            if i < nx - 1:
+
+                if i % 2 == 0:
+
+                    relations.append('String %d %d %d\n' % (j * nx + i, j * nx + i + 1, k))
+
+                if i % 2 == 1 and 0 < j < ny - 1:
+
+                    relations.append('String %d %d %d\n' % (j * nx + i, j * nx + i + 1, k / 2))
+
+            if j < ny - 1 and 0 < i and j % 2 == 0:
+
+                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i - 1, k))
+
+            if j < ny - 1 and i < nx - 1 and j % 2 == 1:
+
+                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
+
+            if j < ny - 1 and 0 < i < nx - 1:
+
+                if not ((i % 2 == 1 and j == 0) or (j == ny - 2 and i % 2 == 0)) :
+
+                    relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i, k / 1.71))
+
+            if i % 2 == 0 and j < ny - 1:
+
+                if j % 2 == 0 and 0 < i and j < ny - 2:
+
+                    relations.append('String %d %d %d\n' % (j * nx + i + 1, (j + 1) * nx + i - 1, k / 1.71))
+
+                if j % 2 == 1:
+
+                    if 0 < i:
+
+                        relations.append('String %d %d %d\n' % (j * nx + i - 1, (j + 1) * nx + i + 1, k / 1.71))
+
+                    if i < nx - 2:
+
+                        relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 2, k / 1.71))
+                        relations.append('String %d %d %d\n' % ((j + 1) * nx + i + 2, (j + 2) * nx + i, k / 1.71))
+
+            if i < nx - 1 and i % 2 == 0 and j < ny - 2:
+
+                if not ((i == 0 and j % 2 == 0) or (i == nx - 2 and j % 2 == 1)):
+
+                    relations.append('String %d %d %d\n' % (j * nx + i, (j + 2) * nx + i + 1, k / 2))
+
+            if i < nx - 1 and i % 2 == 0 and j < ny - 2:
+
+                if not ((i == 0 and j % 2 == 0) or (i == nx - 2 and j % 2 == 1)):
+
+                    relations.append('String %d %d %d\n' % (j * nx + i + 1, (j + 2) * nx + i, k / 1.71))
+
+
+            if j < ny - 2:
+
+                if not((i == 1 and j % 2 == 0) or (i == 0 and j % 2 == 0) or (i > nx - 3 and j % 2 == 1)):
+
+                    relations.append('String %d %d %d\n' % (j * nx + i, (j + 2) * nx + i, k / 1.71))
+
+
 def get_weights(weights, nx, ny):
 
     for j in range(ny):
@@ -95,7 +162,7 @@ def get_weights(weights, nx, ny):
 
                 weights[j].append(body_mass)
 
-    if structure == 1:
+    if structure == 1 or structure == 2:
 
         for j in range(ny):
 
@@ -156,9 +223,19 @@ if __name__ == '__main__':
         honeycomb_relations(relations, nx, ny, k)
         print 'Honeycomb structure READY !'
 
+    if structure == 2:
+
+        # # HONEYCOMB GRID ex
+        twice_x_offset = x_offset * 2
+        to_honeycomb(lambda x: x + x / 2, bodies)
+        translate(Vector(init_offset, init_offset), bodies)
+
+        honeycomb_extended_relations(relations, nx, ny, k)
+        print 'Honeycomb structure ex READY !'
+
     if solid_frame:
 
-        frame_ratio = 1000
+        frame_ratio = 10000
 
     get_weights(weights, nx, ny)
 
