@@ -137,7 +137,7 @@ def honeycomb_extended_relations(relations, nx, ny, k):
 
                 if not ((i == 0 and j % 2 == 0) or (i == nx - 2 and j % 2 == 1)):
 
-                    relations.append('String %d %d %f\n' % (j * nx + i + 1, (j + 2) * nx + i, k / 1.71))
+                    relations.append('String %d %d %f\n' % (j * nx + i + 1, (j + 2) * nx + i, k / 2))
 
 
             if j < ny - 2:
