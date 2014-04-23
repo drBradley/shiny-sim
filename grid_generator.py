@@ -51,16 +51,16 @@ def grid_relation(relations, x, y, k):
 
             if 0 < i < x and 0 < j < y:
 
-                relations.append('String %d %d %d\n' % (x * j + i, x * j + i - 1, k))
-                relations.append('String %d %d %d\n' % (x * j + i, x * (j - 1) + i, k))
+                relations.append('String %d %d %f\n' % (x * j + i, x * j + i - 1, k))
+                relations.append('String %d %d %f\n' % (x * j + i, x * (j - 1) + i, k))
 
             if i == 0 and 0 < j:
 
-                relations.append('String %d %d %d\n' % (x * j, x * (j - 1), k))
+                relations.append('String %d %d %f\n' % (x * j, x * (j - 1), k))
 
             if j == 0 and 0 < i:
 
-                relations.append('String %d %d %d\n' % (i, i - 1, k))
+                relations.append('String %d %d %f\n' % (i, i - 1, k))
 
 def honeycomb_relations(relations, nx, ny, k):
 
@@ -70,15 +70,15 @@ def honeycomb_relations(relations, nx, ny, k):
 
             if i < nx - 1 and i % 2 == 0:
 
-                relations.append('String %d %d %d\n' % (j * nx + i, j * nx + i + 1, k))
+                relations.append('String %d %d %f\n' % (j * nx + i, j * nx + i + 1, k))
 
             if j < ny - 1 and 0 < i and j % 2 == 0:
 
-                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i - 1, k))
+                relations.append('String %d %d %f\n' % (j * nx + i, (j + 1) * nx + i - 1, k))
 
             if j < ny - 1 and i < nx - 1 and j % 2 == 1:
 
-                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
+                relations.append('String %d %d %f\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
 
 def honeycomb_extended_relations(relations, nx, ny, k):
 
@@ -90,61 +90,61 @@ def honeycomb_extended_relations(relations, nx, ny, k):
 
                 if i % 2 == 0:
 
-                    relations.append('String %d %d %d\n' % (j * nx + i, j * nx + i + 1, k))
+                    relations.append('String %d %d %f\n' % (j * nx + i, j * nx + i + 1, k))
 
                 if i % 2 == 1 and 0 < j < ny - 1:
 
-                    relations.append('String %d %d %d\n' % (j * nx + i, j * nx + i + 1, k / 2))
+                    relations.append('String %d %d %f\n' % (j * nx + i, j * nx + i + 1, k / 2))
 
             if j < ny - 1 and 0 < i and j % 2 == 0:
 
-                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i - 1, k))
+                relations.append('String %d %d %f\n' % (j * nx + i, (j + 1) * nx + i - 1, k))
 
             if j < ny - 1 and i < nx - 1 and j % 2 == 1:
 
-                relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
+                relations.append('String %d %d %f\n' % (j * nx + i, (j + 1) * nx + i + 1, k))
 
             if j < ny - 1 and 0 < i < nx - 1:
 
                 if not ((i % 2 == 1 and j == 0) or (j == ny - 2 and i % 2 == 0)) :
 
-                    relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i, k / 1.71))
+                    relations.append('String %d %d %f\n' % (j * nx + i, (j + 1) * nx + i, k / 1.71))
 
             if i % 2 == 0 and j < ny - 1:
 
                 if j % 2 == 0 and 0 < i and j < ny - 2:
 
-                    relations.append('String %d %d %d\n' % (j * nx + i + 1, (j + 1) * nx + i - 1, k / 1.71))
+                    relations.append('String %d %d %f\n' % (j * nx + i + 1, (j + 1) * nx + i - 1, k / 1.71))
 
                 if j % 2 == 1:
 
                     if 0 < i:
 
-                        relations.append('String %d %d %d\n' % (j * nx + i - 1, (j + 1) * nx + i + 1, k / 1.71))
+                        relations.append('String %d %d %f\n' % (j * nx + i - 1, (j + 1) * nx + i + 1, k / 1.71))
 
                     if i < nx - 2:
 
-                        relations.append('String %d %d %d\n' % (j * nx + i, (j + 1) * nx + i + 2, k / 1.71))
-                        relations.append('String %d %d %d\n' % ((j + 1) * nx + i + 2, (j + 2) * nx + i, k / 1.71))
+                        relations.append('String %d %d %f\n' % (j * nx + i, (j + 1) * nx + i + 2, k / 1.71))
+                        relations.append('String %d %d %f\n' % ((j + 1) * nx + i + 2, (j + 2) * nx + i, k / 1.71))
 
             if i < nx - 1 and i % 2 == 0 and j < ny - 2:
 
                 if not ((i == 0 and j % 2 == 0) or (i == nx - 2 and j % 2 == 1)):
 
-                    relations.append('String %d %d %d\n' % (j * nx + i, (j + 2) * nx + i + 1, k / 2))
+                    relations.append('String %d %d %f\n' % (j * nx + i, (j + 2) * nx + i + 1, k / 2))
 
             if i < nx - 1 and i % 2 == 0 and j < ny - 2:
 
                 if not ((i == 0 and j % 2 == 0) or (i == nx - 2 and j % 2 == 1)):
 
-                    relations.append('String %d %d %d\n' % (j * nx + i + 1, (j + 2) * nx + i, k / 1.71))
+                    relations.append('String %d %d %f\n' % (j * nx + i + 1, (j + 2) * nx + i, k / 1.71))
 
 
             if j < ny - 2:
 
                 if not((i == 1 and j % 2 == 0) or (i == 0 and j % 2 == 0) or (i > nx - 3 and j % 2 == 1)):
 
-                    relations.append('String %d %d %d\n' % (j * nx + i, (j + 2) * nx + i, k / 1.71))
+                    relations.append('String %d %d %f\n' % (j * nx + i, (j + 2) * nx + i, k / 1.71))
 
 
 def get_weights(weights, nx, ny):
