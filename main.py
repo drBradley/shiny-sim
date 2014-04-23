@@ -28,7 +28,8 @@ def init_system(file_name, bodies, interactions):
                 z = float(eval(tmp[3]))
                 m = float(eval(tmp[4]))
 
-                bodies.append(Body(Vector(x, y, z), m))
+                bodies[0].append([x, y, z])
+                bodies[1].append([m])
 
             elif tmp[0] == 'String':
 
@@ -36,9 +37,14 @@ def init_system(file_name, bodies, interactions):
                 left = int(tmp[2])
                 k = float(tmp[3])
 
-                interactions.append(String(bodies[right],
-                                           bodies[left],
-                                           k))
+
+                interactions[0].append([right])
+                interactions[1].append([left])
+                interactions[2].append([k])
+                interactions[4].append([left, right])
+                interactions[3].append([math.sqrt((bodies[0][left][0] - bodies[0][right][0])**2 +
+                                                  (bodies[0][left][1] - bodies[0][right][1])**2 +
+                                                  (bodies[0][left][2] - bodies[0][right][2])**2)])
 
 def configure_system(file_name, integrator):
 
@@ -71,8 +77,8 @@ if __name__ == '__main__':
 
         dt = 0.01
 
-        bodies = []
-        interactions = []
+        bodies = [[], []]
+        interactions = [[], [], [], [], []]
 
         app = QtGui.QApplication(sys.argv)
         integrator = Integrator()
