@@ -44,15 +44,87 @@ class Integrator:
         self.speed = numpy.zeros((self.bodies, 1))
 
         self.system_total_energy = 0
+        self.integration_code = """
+        #include <math.h>
 
+        float extension_length = 0;
+        int x = 0, y = 0, z = 0, right_i = 0, left_i = 0;
 
-            body.calculate(dt)
+        for(int index = 0; index < interactions_size; index++) {
 
-    def show_bodies(self):
+        x = index * 3;
+        y = x + 1;
+        z = x + 2;
 
-        for body in self.bodies:
+        left_i = left[index] * 3;
+        right_i = right[index] * 3;
 
-            print str(self.bodies.index(body)) + " " + body.show()
+        extension[x] = position[left_i] - position[right_i];
+        extension[y] = position[left_i + 1] - position[right_i + 1];
+        extension[z] = position[left_i + 2] - position[right_i + 2];
+
+        extension_length = sqrt(extension[x] * extension[x] +
+        extension[y] * extension[y] +
+        extension[z] * extension[z]);
+
+        extension[x] = extension[x] * (extension_length - length[index]) / extension_length;
+        extension[y] = extension[y] * (extension_length - length[index]) / extension_length;
+        extension[z] = extension[z] * (extension_length - length[index]) / extension_length;
+
+        string_force[x] = k[index] * extension[x];
+        string_force[y] = k[index] * extension[y];
+        string_force[z] = k[index] * extension[z];
+
+        string_potential_energy[index] = k[index] * extension_length * extension_length / 2.0;
+
+        body_force[right_i] -= string_force[x];
+        body_force[right_i + 1] -= string_force[y];
+        body_force[right_i + 2] -= string_force[z];
+
+        body_force[left_i] += string_force[x];
+        body_force[left_i + 1] += string_force[y];
+        body_force[left_i + 2] += string_force[z];
+
+        body_potential_energy[left_i] += string_potential_energy[index];
+        body_potential_energy[right_i] += string_potential_energy[index];
+        }
+
+        for(int index = 0; index < bodies; index++) {
+
+        x = index * 3;
+        y = x + 1;
+        z = x + 2;
+
+        new_position[x] = 2 * position[x] - old_position[x] - body_force[x] * dt * dt;
+        new_position[y] = 2 * position[y] - old_position[y] - body_force[y] * dt * dt;
+        new_position[z] = 2 * position[z] - old_position[z] - body_force[z] * dt * dt;
+
+        velocity_vector[x] = (new_position[x] - old_position[x]) / (2 * dt);
+        velocity_vector[y] = (new_position[y] - old_position[y]) / (2 * dt);
+        velocity_vector[z] = (new_position[z] - old_position[z]) / (2 * dt);
+
+        speed[index] = sqrt(velocity_vector[x] * velocity_vector[x] +
+        velocity_vector[y] * velocity_vector[y] +
+        velocity_vector[z] * velocity_vector[z]);
+
+        body_kinetic_energy[index] = mass[index] * speed[index] * speed[index] / 2.0;
+        body_total_energy[index] = body_kinetic_energy[index] + body_potential_energy[index];
+
+        old_position[x] = position[x];
+        old_position[y] = position[y];
+        old_position[z] = position[z];
+
+        position[x] = new_position[x];
+        position[y] = new_position[y];
+        position[z] = new_position[z];
+
+        body_force[x] = 0;
+        body_force[y] = 0;
+        body_force[z] = 0;
+
+        body_potential_energy[index] = 0;
+        }
+        """
 
     def get_total_energy(self):
 
