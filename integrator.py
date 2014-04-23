@@ -134,7 +134,38 @@ class Integrator:
 
         self.position[index_of_body] = numpy.add(self.position[index_of_body], shift)
 
+    def integrate(self, dt):
 
+        bodies = self.bodies
+        position = self.position
+        old_position = self.old_position
+        new_position = self.new_position
+        mass = self.mass
+        acceleration = self.acceleration
+        velocity_vector = self.velocity_vector
+        body_force = self.force
+        body_potential_energy = self.body_potential_energy
+        body_kinetic_energy = self.body_kinetic_energy
+        system_total_energy = self.system_total_energy
+        body_total_energy = self.body_total_energy
+        speed = self.speed
+        right = self.right
+        left = self.left
+        k = self.k
+        extension = self.extension
+        length = self.length
+        string_force = self.string_force
+        string_potential_energy = self.string_potential_energy
+        interactions_size = self.interactions_size
+
+        scipy.weave.inline(self.integration_code,
+                           ['bodies', 'position', 'old_position', 'new_position',
+                            'mass', 'acceleration', 'velocity_vector',
+                            'body_force', 'body_potential_energy', 'body_total_energy', 'speed',
+                            'right', 'left', 'k', 'length', 'extension', 'body_kinetic_energy',
+                            'string_force', 'string_potential_energy', 'interactions_size', 'dt',
+                            'system_total_energy'],
+                           headers=['<math.h>'])
 
 
     def get_max_energy(self):
