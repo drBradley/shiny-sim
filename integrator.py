@@ -130,14 +130,12 @@ class Integrator:
         }
         """
 
-    def get_total_energy(self):
+    def shift_body(self, index_of_body, shift):
 
-        energy = 0;
-        for body in self.bodies:
+        self.position[index_of_body] = numpy.add(self.position[index_of_body], shift)
 
-            energy += body.total_energy
 
-        return energy
+
 
     def get_max_energy(self):
 
