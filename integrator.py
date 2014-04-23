@@ -44,6 +44,11 @@ class Integrator:
         self.speed = numpy.zeros((self.bodies, 1))
 
         self.system_total_energy = 0
+
+        print 'Objects:', self.interactions_size + self.bodies
+        print 'Bodies:', self.bodies
+        print 'Interactions:', self.interactions_size
+
         self.integration_code = """
         #include <math.h>
 
