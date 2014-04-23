@@ -179,9 +179,10 @@ class Integrator:
 
         return math.log(1 + value)
 
-    def rate_function(self, body, steps):
+    def rate_function(self, body_index, steps):
 
-        rate = int(steps - self.normalize(body.total_energy) * steps / self.max_energy) - 1
+        rate = int(steps - self.normalize(self.body_total_energy[body_index][0]) * steps / self.max_energy) - 1
+
         if not (rate < 0):
 
             return rate
