@@ -171,13 +171,9 @@ class Integrator:
 
         return numpy.sum(self.body_total_energy)
 
-        return energy
+    def get_max_energy(self):
 
-    def show_interactions(self):
-
-        for interaction in self.interactions:
-
-            print interaction.show()
+        return numpy.amax(self.body_total_energy)
 
     def normalize(self, value):
 
