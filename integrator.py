@@ -167,16 +167,9 @@ class Integrator:
                             'system_total_energy'],
                            headers=['<math.h>'])
 
+    def get_total_energy(self):
 
-    def get_max_energy(self):
-
-        energy = -sys.maxint - 1
-
-        for body in self.bodies:
-
-            if body.total_energy > energy:
-
-                energy = body.total_energy
+        return numpy.sum(self.body_total_energy)
 
         return energy
 
