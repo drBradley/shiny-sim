@@ -18,18 +18,33 @@ class Integrator:
         self.interactions_size = len(interaction_data[0])
         self.max_energy = 0
 
+        self.interactions = numpy.array(interaction_data[4])
+        self.right = numpy.array(interaction_data[0])
+        self.left = numpy.array(interaction_data[1])
+        self.k = numpy.array(interaction_data[2])
+        self.length = numpy.array(interaction_data[3])
+        self.extension = numpy.zeros((self.interactions_size, 3))
+        self.string_force = numpy.zeros((self.interactions_size, 3))
+        self.string_potential_energy = numpy.zeros((self.interactions_size, 1))
 
-    def shift_body(self, index_of_body, shift):
+        self.position = numpy.array(bodies_data[0])
+        self.old_position = numpy.array(bodies_data[0])
+        self.mass = numpy.array(bodies_data[1])
 
-        self.bodies[index_of_body].move_by(shift)
+        self.bodies = len(self.position)
 
-    def integrate(self, dt):
+        self.new_position = numpy.zeros((self.bodies, 3))
+        self.acceleration = numpy.zeros((self.bodies, 3))
+        self.velocity_vector = numpy.zeros((self.bodies, 3))
+        self.force = numpy.zeros((self.bodies, 3))
 
-        for interaction in self.interactions:
+        self.body_potential_energy = numpy.zeros((self.bodies, 1))
+        self.body_kinetic_energy = numpy.zeros((self.bodies, 1))
+        self.body_total_energy = numpy.zeros((self.bodies, 1))
+        self.speed = numpy.zeros((self.bodies, 1))
 
-            interaction.compute()
+        self.system_total_energy = 0
 
-        for body in self.bodies:
 
             body.calculate(dt)
 
