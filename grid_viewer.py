@@ -165,3 +165,11 @@ class GridViewer(QtGui.QWidget):
             self.prepare_maps()
             self.prepare_color_key()
             print 'Max energy', self.integrator.get_max_energy(), self.integrator.get_total_energy()
+
+        if key == QtCore.Qt.Key_H:
+
+            self.k_index = (self.k_index + 1) % len(self.k_list)
+
+        if key == QtCore.Qt.Key_L:
+
+            self.k_index = (self.k_index - 1 + len(self.k_list)) % len(self.k_list)
