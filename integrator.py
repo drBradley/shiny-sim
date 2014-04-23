@@ -47,7 +47,7 @@ class Integrator:
         self.integration_code = """
         #include <math.h>
 
-        float extension_length = 0;
+        float extension_length = 0, new_extension_length = 0;
         int x = 0, y = 0, z = 0, right_i = 0, left_i = 0;
 
         for(int index = 0; index < interactions_size; index++) {
@@ -75,7 +75,11 @@ class Integrator:
         string_force[y] = k[index] * extension[y];
         string_force[z] = k[index] * extension[z];
 
-        string_potential_energy[index] = k[index] * extension_length * extension_length / 2.0;
+        new_extension_length = sqrt(extension[x] * extension[x] +
+        extension[y] * extension[y] +
+        extension[z] * extension[z]);
+
+        string_potential_energy[index] = k[index] * new_extension_length * new_extension_length / 2.0;
 
         body_force[right_i] -= string_force[x];
         body_force[right_i + 1] -= string_force[y];
