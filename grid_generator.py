@@ -188,8 +188,8 @@ if __name__ == '__main__':
     solid_frame = True
 
     init_offset = 50
-    x_offset = int(1000.0 / nx)
-    y_offset = int(1000.0 / ny)
+    x_offset = 26
+    y_offset = 26
 
     k = 10
     body_mass = 1
