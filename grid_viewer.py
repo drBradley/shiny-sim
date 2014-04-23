@@ -94,13 +94,19 @@ class GridViewer(QtGui.QWidget):
             painter = QtGui.QPainter()
             painter.begin(self)
 
-            for interaction in self.integrator.interactions:
+            for index, interaction in enumerate(self.integrator.interactions):
 
-                painter.drawLine(self.view_x + interaction.left.position.x,
-                                 self.view_y + interaction.left.position.y,
-                                 self.view_x + interaction.right.position.x,
-                                 self.view_y + interaction.right.position.y)
+                if self.integrator.k[index] == 10:
 
+                    l_index = interaction[0]
+                    r_index = interaction[1]
+
+                    startx = self.view_x + self.integrator.position[l_index][0]
+                    starty = self.view_y + self.integrator.position[l_index][1]
+                    endx = self.view_x + self.integrator.position[r_index][0]
+                    endy = self.view_y + self.integrator.position[r_index][1]
+
+                    painter.drawLine(startx, starty, endx, endy)
 
             for index, body_pos in enumerate(self.integrator.position):
 
