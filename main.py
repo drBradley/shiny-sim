@@ -61,7 +61,7 @@ def configure_system(file_name, integrator):
                 y = float(eval(tmp[3]))
                 z = float(eval(tmp[4]))
                 print 'Moving ',index, ' by [',x, y, z, ']'
-                displacement = Vector(x, y, z)
+                displacement = numpy.array([x, y, z])
                 integrator.shift_body(index, displacement)
 
 def run():
