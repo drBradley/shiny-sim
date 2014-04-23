@@ -81,13 +81,11 @@ if __name__ == '__main__':
         interactions = [[], [], [], [], []]
 
         app = QtGui.QApplication(sys.argv)
-        integrator = Integrator()
-        viewer = GridViewer(integrator, dt)
 
         init_system(sys.argv[1], bodies, interactions)
 
-        integrator.add_bodies(bodies)
-        integrator.add_interactions(interactions)
+        integrator = Integrator(bodies, interactions)
+        viewer = GridViewer(integrator, dt)
 
         configure_system(sys.argv[2], integrator)
 
