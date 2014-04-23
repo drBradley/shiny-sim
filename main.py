@@ -1,5 +1,7 @@
 import sys
+import math
 
+import numpy
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import QTimer
 
