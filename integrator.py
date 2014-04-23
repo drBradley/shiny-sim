@@ -15,23 +15,6 @@ class Integrator:
         self.interactions_size = len(interaction_data[0])
         self.max_energy = 0
 
-    def add_bodies(self, bodies):
-
-        self.bodies = bodies
-
-    def add_body(self, body):
-
-        if isinstance(body, Body):
-
-            self.bodies.append(body)
-
-        else:
-
-            print "Not a physical body"
-
-    def add_interactions(self, interactions):
-
-        self.interactions = interactions
 
     def shift_body(self, index_of_body, shift):
 
