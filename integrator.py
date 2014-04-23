@@ -9,11 +9,10 @@ from vector import Vector
 
 class Integrator:
 
-    def __init__(self):
+    def __init__(self, bodies_data, interaction_data):
 
         self.first_run = True
-        self.bodies = []
-        self.interactions = []
+        self.interactions_size = len(interaction_data[0])
         self.max_energy = 0
 
     def add_bodies(self, bodies):
