@@ -2,6 +2,9 @@ import sys
 import time
 import math
 
+import numpy
+import scipy.weave
+
 from body import Body
 from interactions import String
 from vector import Vector
