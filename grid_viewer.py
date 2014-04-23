@@ -10,11 +10,13 @@ from integrator import Integrator
 
 class GridViewer(QtGui.QWidget):
 
-    def __init__(self, integrator, dt):
+    def __init__(self, integrator, dt, k_list):
 
         super(GridViewer, self).__init__()
         self.setMouseTracking(True)
 
+        self.k_index = 0
+        self.k_list = k_list
         self.view_x = 0
         self.view_y = 0
         self.show()
@@ -96,7 +98,7 @@ class GridViewer(QtGui.QWidget):
 
             for index, interaction in enumerate(self.integrator.interactions):
 
-                if self.integrator.k[index] == 10:
+                if self.integrator.k[index] == self.k_list[self.k_index]:
 
                     l_index = interaction[0]
                     r_index = interaction[1]

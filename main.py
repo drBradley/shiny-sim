@@ -12,6 +12,7 @@ from interactions import String
 from vector import Vector
 
 delay = 10
+k_list = []
 
 def init_system(file_name, bodies, interactions):
 
@@ -37,6 +38,9 @@ def init_system(file_name, bodies, interactions):
                 left = int(tmp[2])
                 k = float(tmp[3])
 
+                if k not in k_list:
+
+                    k_list.append(k)
 
                 interactions[0].append([right])
                 interactions[1].append([left])
@@ -85,7 +89,7 @@ if __name__ == '__main__':
         init_system(sys.argv[1], bodies, interactions)
 
         integrator = Integrator(bodies, interactions)
-        viewer = GridViewer(integrator, dt)
+        viewer = GridViewer(integrator, dt, k_list)
 
         configure_system(sys.argv[2], integrator)
 
