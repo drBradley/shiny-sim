@@ -101,19 +101,19 @@ class GridViewer(QtGui.QWidget):
                                  self.view_x + interaction.right.position.x,
                                  self.view_y + interaction.right.position.y)
 
-            for body in self.integrator.bodies:
 
-                pos = body.position
+            for index, body_pos in enumerate(self.integrator.position):
+
                 if not self.integrator.max_energy == 0:
 
-                    rate = self.integrator.rate_function(body, self.steps)
+                    rate = self.integrator.rate_function(index, self.steps)
 
                 else:
 
-                    rate = 0
+                    rate = self.steps - 1
 
-                painter.drawPixmap(self.view_x + pos.x - self.size / 2,
-                                   self.view_y + pos.y - self.size / 2,
+                painter.drawPixmap(self.view_x + body_pos[0] - self.size / 2,
+                                   self.view_y + body_pos[1] - self.size / 2,
                                    self.pixmaps[rate])
 
             painter.drawPixmap(self.width() - 150,
