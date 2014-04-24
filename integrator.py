@@ -49,12 +49,13 @@ class Integrator:
         print 'Bodies:', self.bodies
         print 'Interactions:', self.interactions_size
 
-        self.integration_code = """
+        self.data_code = """
         #include <math.h>
 
         float extension_length = 0, new_extension_length = 0;
         int x = 0, y = 0, z = 0, right_i = 0, left_i = 0;
-
+        """
+        self.string_integration_code = """
         for(int index = 0; index < interactions_size; index++) {
 
         x = index * 3;
@@ -97,7 +98,9 @@ class Integrator:
         body_potential_energy[left_i] += string_potential_energy[index];
         body_potential_energy[right_i] += string_potential_energy[index];
         }
+        """
 
+        self.body_integration_code = """
         for(int index = 0; index < bodies; index++) {
 
         x = index * 3;
@@ -163,7 +166,7 @@ class Integrator:
         string_potential_energy = self.string_potential_energy
         interactions_size = self.interactions_size
 
-        scipy.weave.inline(self.integration_code,
+        scipy.weave.inline(self.data_code + self.string_integration_code + self.body_integration_code,
                            ['bodies', 'position', 'old_position', 'new_position',
                             'mass', 'acceleration', 'velocity_vector',
                             'body_force', 'body_potential_energy', 'body_total_energy', 'speed',
