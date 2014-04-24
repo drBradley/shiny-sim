@@ -22,7 +22,9 @@ initially moved in positive z direction.
 # Dependiencies
 
 * Python 2.7
-* PyQt4
+* PyQt 4.10
+* Numpy 1.8.1
+* Scipy 0.13.3
 
 # Run it
 
